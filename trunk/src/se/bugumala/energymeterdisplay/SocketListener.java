@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Date;
 
 public class SocketListener {
 	private ServerSocket server;
@@ -59,7 +60,11 @@ class ConnectionHandler implements Runnable {
 			ObjectInputStream ois = new ObjectInputStream(socket
 					.getInputStream());
 			String message = (String) ois.readObject();
-			System.out.println("Message Received: " + message);
+			String[] parts = message.split(";");
+			long timestamp = Long.parseLong(parts[0]);
+			long pulsesPerHour = Long.parseLong(parts[1]);
+			System.out.println("unix time: " + timestamp + "( = " + new Date(timestamp) + ")");
+			System.out.println("pulses per hour: " + pulsesPerHour);		
 
 			ois.close();
 			socket.close();
