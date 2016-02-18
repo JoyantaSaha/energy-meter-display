@@ -1,0 +1,1 @@
+Energy Meter is an android app that measures the total electricity consumption of a household. This is an implementation of a server connection to the app. The purpose is to display the consumption in a nice graph, when finished.
